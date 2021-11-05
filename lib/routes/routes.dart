@@ -10,13 +10,31 @@ import 'package:get/get.dart';
 
 class Routes {
   static final routes = [
-    GetPage(name: '/', page: () => LoadingScreen()),
-    GetPage(name: '/register', page: () => RegisterScreen()),
-    GetPage(name: '/login', page: () => LoginScreen()),
-    GetPage(name: '/profile', page: () => ProfileScreen()),
-    GetPage(name: '/editProfile', page: () => EditProfileScreen()),
-    GetPage(name: '/posts', page: () => PostsScreen()),
-    GetPage(name: '/weather', page: () => WeatherScreen()),
-    GetPage(name: '/readers', page: () => ReadersScreen())
+    GetPage(
+        name: '/', page: () => LoadingScreen(), transition: Transition.zoom),
+    GetPage(
+        name: '/register',
+        page: () => RegisterScreen(),
+        transition: Transition.zoom),
+    GetPage(
+        name: '/login', page: () => LoginScreen(), transition: Transition.zoom),
+    GetPage(
+        name: '/profile',
+        page: () => ProfileScreen(),
+        transition: Transition.zoom),
+    GetPage(
+        name: '/editProfile',
+        page: () => EditProfileScreen(),
+        transition: Transition.zoom),
+    GetPage(
+        name: '/posts', page: () => PostsScreen(), transition: Transition.zoom),
+    GetPage(
+        name: '/weather',
+        page: () => WeatherScreen(),
+        transition: Transition.zoom),
+    GetPage(
+        name: '/readers',
+        page: () => ReadersScreen(),
+        transition: Transition.zoom)
   ];
 }

@@ -7,6 +7,7 @@ const Color GREY_LIGHT_COLOR = Color(0xFFF9F9F9);
 const Color GREY_BG_COLOR = Color(0xFFF8F9F9);
 const Color LINK_COLOR = Color(0xFFEBB23D);
 const Color RED_COLOR = Color(0xFFEF2929);
+const Color GREY_DARK_COLOR = Color(0xFFA7A7A7);
 
 // gradient
 const Color GREEN_GRADIENT_DARK = Color(0xFF52E19E);

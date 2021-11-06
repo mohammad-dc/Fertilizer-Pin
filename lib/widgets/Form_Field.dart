@@ -25,8 +25,8 @@ class FertilizerFormField extends StatelessWidget {
               borderSide: BorderSide(color: Colors.transparent),
               borderRadius: BorderRadius.circular(8)),
           hintText: hintText,
-          hintStyle:
-              TextStyle(color: HINT_COLOR, fontFamily: 'Montserrat-Light'),
+          hintStyle: TextStyle(
+              color: HINT_COLOR, fontFamily: 'Montserrat-Light', fontSize: 12),
           filled: true,
           fillColor: GREY_LIGHT_COLOR),
     );

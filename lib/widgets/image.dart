@@ -4,11 +4,13 @@ class FertilizerImage extends StatelessWidget {
   final double width, height;
   final String networkImage, assetsImage;
   final bool image;
+  final double circular;
 
   const FertilizerImage(
       {Key? key,
       this.width = 100,
       this.height = 100,
+      this.circular = 8,
       required this.networkImage,
       this.assetsImage = '/assets/images/user.png',
       this.image = true})
@@ -20,7 +22,7 @@ class FertilizerImage extends StatelessWidget {
       width: width,
       height: height,
       decoration: BoxDecoration(
-          shape: BoxShape.circle,
+          borderRadius: BorderRadius.circular(circular),
           image: DecorationImage(
               image: image
                   ? NetworkImage(networkImage)

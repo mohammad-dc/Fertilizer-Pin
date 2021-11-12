@@ -7,20 +7,21 @@ class User {
       address,
       phone,
       deviceUsername,
-      devicePassword;
+      devicePassword,
+      image;
 
-  User({
-    this.id = 0,
-    this.deviceId = 0,
-    this.fullName = '',
-    this.email = '',
-    this.password = '',
-    this.city = '',
-    this.address = '',
-    this.phone = '',
-    this.deviceUsername = '',
-    this.devicePassword = '',
-  });
+  User(
+      {this.id = 0,
+      this.deviceId = 0,
+      this.fullName = '',
+      this.email = '',
+      this.password = '',
+      this.city = '',
+      this.address = '',
+      this.phone = '',
+      this.deviceUsername = '',
+      this.devicePassword = '',
+      this.image = ''});
 
   factory User.formJson(Map<String, dynamic> json) {
     return User(
@@ -33,6 +34,7 @@ class User {
         address: json['address'],
         phone: json['phone'],
         deviceUsername: json['deviceUsername'],
+        image: json['image'],
         devicePassword: json['devicePassword']);
   }
 }

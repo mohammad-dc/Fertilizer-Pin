@@ -1,3 +1,4 @@
+import 'package:fertilizer_pin/config/bending.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:fertilizer_pin/routes/routes.dart';
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Fertilizer Pin',
       debugShowCheckedModeBanner: false,
+      initialBinding: AppBindings(),
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

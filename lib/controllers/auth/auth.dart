@@ -24,11 +24,9 @@ class AuthController extends GetxController with StateMixin<dynamic> {
 
     if (response != null) {
       if (response is Error) {
-        print('error');
         print(response.message);
         Timer(Duration(seconds: 3), () => Get.toNamed('/login'));
       } else if (response is Verify) {
-        print('success');
         verifySuccess = response;
         print(verifySuccess);
       }

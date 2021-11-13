@@ -4,7 +4,10 @@ import 'package:fertilizer_pin/common/colors.dart';
 
 class FertilizerButton extends StatelessWidget {
   final String text;
-  const FertilizerButton({Key? key, required this.text}) : super(key: key);
+  final VoidCallback onPressed;
+  const FertilizerButton(
+      {Key? key, required this.text, required this.onPressed})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +18,7 @@ class FertilizerButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
             gradient: LinearGradient(
                 colors: [GREEN_GRADIENT_DARK, GREEN_GRADIENT_LIGHT])),
-        child: TextButton(onPressed: null, child: FertilizerText(text: text)));
+        child: TextButton(
+            onPressed: onPressed, child: FertilizerText(text: text)));
   }
 }

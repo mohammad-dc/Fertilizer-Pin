@@ -1,3 +1,4 @@
+import 'package:fertilizer_pin/controllers/auth/login.dart';
 import 'package:fertilizer_pin/widgets/Form_Field.dart';
 import 'package:fertilizer_pin/widgets/button.dart';
 import 'package:fertilizer_pin/widgets/logo.dart';
@@ -6,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:fertilizer_pin/widgets/fertilizer_text.dart';
 import 'package:get/get.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends GetView<LoginController> {
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
@@ -40,29 +41,44 @@ class LoginScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: Container(
-                      child: Column(
-                        children: [
-                          FertilizerFormField(
-                            hintText: 'البريد الالكتروني',
-                            keyboardType: TextInputType.emailAddress,
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          FertilizerFormField(
-                            hintText: 'كلمة المرور',
-                            keyboardType: TextInputType.text,
-                            obscureText: true,
-                          ),
-                          SizedBox(
-                            height: 30,
-                          ),
-                          FertilizerButton(text: 'تسجيل الدخول'),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          FertilizerSwitchToRegister()
-                        ],
+                      child: Form(
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        key: controller.loginFormKey,
+                        child: Column(
+                          children: [
+                            FertilizerFormField(
+                              hintText: 'البريد الالكتروني',
+                              keyboardType: TextInputType.emailAddress,
+                              controller: controller.emailController,
+                              onSaved: (value) => controller.email = value!,
+                              validator: (value) =>
+                                  controller.valideateEmail(value!),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            FertilizerFormField(
+                              hintText: 'كلمة المرور',
+                              keyboardType: TextInputType.text,
+                              obscureText: true,
+                              controller: controller.passwordController,
+                              onSaved: (value) => controller.password = value!,
+                              validator: (value) =>
+                                  controller.valideatePassword(value!),
+                            ),
+                            SizedBox(
+                              height: 30,
+                            ),
+                            FertilizerButton(
+                              text: 'تسجيل الدخول',
+                              onPressed: () => controller.checkLogin(),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            FertilizerSwitchToRegister()
+                          ],
+                        ),
                       ),
                     ),
                   )

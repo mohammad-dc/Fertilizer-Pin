@@ -32,8 +32,7 @@ class AuthController extends GetxController with StateMixin<dynamic> {
 
     if (response != null) {
       if (response is Error) {
-        print(response.message);
-        Timer(Duration(seconds: 3), () => Get.toNamed('/login'));
+        Timer(Duration(seconds: 3), () => Get.offNamed('/login'));
       } else if (response is Verify) {
         verifySuccess = response;
         print(verifySuccess);
@@ -56,7 +55,6 @@ class AuthController extends GetxController with StateMixin<dynamic> {
     var response = await authService.register(body);
     if (response != null) {
       if (response is Error) {
-        print(response.message);
       } else if (response is Register) {
         registerSuccess = response;
       }

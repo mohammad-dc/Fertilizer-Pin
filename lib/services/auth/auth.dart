@@ -12,7 +12,7 @@ class AuthServices extends GetConnect {
   Future<dynamic> verifyAccount() async {
     String? token = "";
     if (await SharedPreferencesHelper.checkIfExsist('token')) {
-      token = await SharedPreferencesHelper.getStorageData('token');
+      token = (await SharedPreferencesHelper.getStorageData('token'));
     } else {
       return Error.formJson(
           jsonDecode(jsonEncode({'success': false, 'message': 'no token'})));

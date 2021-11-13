@@ -4,6 +4,7 @@ import 'package:fertilizer_pin/widgets/logo.dart';
 import 'package:fertilizer_pin/widgets/switch_to_signup.dart';
 import 'package:flutter/material.dart';
 import 'package:fertilizer_pin/widgets/fertilizer_text.dart';
+import 'package:get/get.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -62,7 +63,8 @@ class LoginScreen extends StatelessWidget {
                           ),
                           FertilizerAuthLink(
                               staticText: 'ليس لديك حساب؟',
-                              linkText: 'انشأ حساب جديد')
+                              linkText: 'انشأ حساب جديد',
+                              onTap: Get.toNamed('/register'))
                         ],
                       ),
                     ),

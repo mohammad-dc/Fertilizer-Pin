@@ -5,8 +5,12 @@ import 'package:fertilizer_pin/common/colors.dart';
 class FertilizerAuthLink extends StatelessWidget {
   final String staticText;
   final String linkText;
+  final dynamic onTap;
   const FertilizerAuthLink(
-      {Key? key, required this.linkText, required this.staticText})
+      {Key? key,
+      required this.linkText,
+      required this.staticText,
+      required this.onTap})
       : super(key: key);
 
   @override
@@ -29,7 +33,7 @@ class FertilizerAuthLink extends StatelessWidget {
             fontFamily: 'Montserrat-Light',
             color: LINK_COLOR,
           ),
-          onTap: null,
+          onTap: onTap,
         )
       ],
     );

@@ -1,7 +1,8 @@
 import 'package:fertilizer_pin/widgets/Form_Field.dart';
 import 'package:fertilizer_pin/widgets/button.dart';
 import 'package:fertilizer_pin/widgets/logo.dart';
-import 'package:fertilizer_pin/widgets/switch_to_signup.dart';
+import 'package:fertilizer_pin/widgets/switch_to_login.dart';
+import 'package:fertilizer_pin/widgets/switch_to_register.dart';
 import 'package:flutter/material.dart';
 import 'package:fertilizer_pin/widgets/fertilizer_text.dart';
 import 'package:get/get.dart';
@@ -96,11 +97,7 @@ class RegisterScreen extends StatelessWidget {
                           SizedBox(
                             height: 40,
                           ),
-                          FertilizerAuthLink(
-                            staticText: 'لديك حساب بالفعل؟',
-                            linkText: 'دخول',
-                            onTap: Get.toNamed('/login'),
-                          ),
+                          FertilizerSwitchToLogin(),
                           SizedBox(
                             height: 20,
                           ),

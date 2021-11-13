@@ -1,17 +1,12 @@
 import 'package:fertilizer_pin/widgets/fertilizer_text.dart';
 import 'package:flutter/material.dart';
 import 'package:fertilizer_pin/common/colors.dart';
+import 'package:get/get.dart';
 
-class FertilizerAuthLink extends StatelessWidget {
-  final String staticText;
-  final String linkText;
-  final dynamic onTap;
-  const FertilizerAuthLink(
-      {Key? key,
-      required this.linkText,
-      required this.staticText,
-      required this.onTap})
-      : super(key: key);
+class FertilizerSwitchToRegister extends StatelessWidget {
+  const FertilizerSwitchToRegister({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +14,7 @@ class FertilizerAuthLink extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         FertilizerText(
-          text: staticText,
+          text: 'ليس لديك حساب؟',
           fontSize: 13,
           fontFamily: 'Montserrat-Light',
         ),
@@ -28,12 +23,12 @@ class FertilizerAuthLink extends StatelessWidget {
         ),
         GestureDetector(
           child: FertilizerText(
-            text: linkText,
+            text: 'انشأ حساب جديد',
             fontSize: 13,
             fontFamily: 'Montserrat-Light',
             color: LINK_COLOR,
           ),
-          onTap: onTap,
+          onTap: () => Get.offNamed('/register'),
         )
       ],
     );

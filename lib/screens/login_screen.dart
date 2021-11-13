@@ -1,7 +1,7 @@
 import 'package:fertilizer_pin/widgets/Form_Field.dart';
 import 'package:fertilizer_pin/widgets/button.dart';
 import 'package:fertilizer_pin/widgets/logo.dart';
-import 'package:fertilizer_pin/widgets/switch_to_signup.dart';
+import 'package:fertilizer_pin/widgets/switch_to_register.dart';
 import 'package:flutter/material.dart';
 import 'package:fertilizer_pin/widgets/fertilizer_text.dart';
 import 'package:get/get.dart';
@@ -61,10 +61,7 @@ class LoginScreen extends StatelessWidget {
                           SizedBox(
                             height: 20,
                           ),
-                          FertilizerAuthLink(
-                              staticText: 'ليس لديك حساب؟',
-                              linkText: 'انشأ حساب جديد',
-                              onTap: Get.toNamed('/register'))
+                          FertilizerSwitchToRegister()
                         ],
                       ),
                     ),

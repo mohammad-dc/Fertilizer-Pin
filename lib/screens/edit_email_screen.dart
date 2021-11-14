@@ -59,6 +59,7 @@ class EditEmailScreen extends StatelessWidget {
                         FertilizerButton(
                           text: 'حفظ',
                           onPressed: () => controller.checkEditEmail(),
+                          loading: controller.loading.value,
                         ),
                       ],
                     ),

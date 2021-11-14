@@ -14,9 +14,6 @@ class AuthController extends GetxController with StateMixin<dynamic> {
   var verifySuccess =
       Verify(success: false, response: VerifyResponse(result: User())).obs();
 
-  var loginSuccess =
-      Login(success: false, response: LoginResponse(result: User())).obs();
-
   var registerSuccess = Register(success: false, message: '').obs();
 
   var authService = AuthServices();
@@ -36,17 +33,6 @@ class AuthController extends GetxController with StateMixin<dynamic> {
       } else if (response is Verify) {
         verifySuccess = response;
         print(verifySuccess);
-      }
-    }
-  }
-
-  void login(body) async {
-    var response = await authService.login(body);
-    if (response != null) {
-      if (response is Error) {
-        print(response.message);
-      } else if (response is Login) {
-        loginSuccess = response;
       }
     }
   }

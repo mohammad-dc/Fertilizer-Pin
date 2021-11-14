@@ -80,8 +80,10 @@ class EditPasswordScreen extends StatelessWidget {
                           height: 30,
                         ),
                         FertilizerButton(
-                            text: 'حفظ',
-                            onPressed: () => controller.checkEditPassowrd()),
+                          text: 'حفظ',
+                          onPressed: () => controller.checkEditPassowrd(),
+                          loading: controller.loading.value,
+                        ),
                       ],
                     ),
                   ),

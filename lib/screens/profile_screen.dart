@@ -4,6 +4,7 @@ import 'package:fertilizer_pin/widgets/image.dart';
 import 'package:fertilizer_pin/widgets/logout_button.dart';
 import 'package:fertilizer_pin/widgets/user_info.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -23,14 +24,17 @@ class ProfileScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(width: 1, color: BLACK_COLOR),
-                          borderRadius: BorderRadius.circular(8)),
-                      child: const Padding(
-                        padding: const EdgeInsets.all(3.0),
-                        child: const Icon(Icons.arrow_back),
-                      )),
+                  GestureDetector(
+                    onTap: () => Get.back(),
+                    child: Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(width: 1, color: BLACK_COLOR),
+                            borderRadius: BorderRadius.circular(8)),
+                        child: const Padding(
+                          padding: const EdgeInsets.all(3.0),
+                          child: const Icon(Icons.arrow_back),
+                        )),
+                  ),
                   SizedBox(
                     height: 20,
                   ),
@@ -70,6 +74,7 @@ class ProfileScreen extends StatelessWidget {
                         Icons.account_circle_outlined,
                         color: GREEN_GRADIENT_DARK,
                       ),
+                      route: 'editName',
                       label: 'الاسم',
                       value: 'محمد احمد'),
                   SizedBox(height: 15),
@@ -78,6 +83,7 @@ class ProfileScreen extends StatelessWidget {
                         Icons.email_outlined,
                         color: GREEN_GRADIENT_DARK,
                       ),
+                      route: 'editEmail',
                       label: 'البريد الالكتروني',
                       value: 'mohamamd@gmail.com'),
                   SizedBox(height: 15),
@@ -86,6 +92,7 @@ class ProfileScreen extends StatelessWidget {
                         Icons.phone_android_rounded,
                         color: GREEN_GRADIENT_DARK,
                       ),
+                      route: 'editPhone',
                       label: 'رقم الهاتف',
                       value: '+97012345678'),
                   SizedBox(height: 15),
@@ -94,6 +101,7 @@ class ProfileScreen extends StatelessWidget {
                         Icons.location_on_outlined,
                         color: GREEN_GRADIENT_DARK,
                       ),
+                      route: 'editLocation',
                       label: 'العنوان',
                       value: 'اليامون, جنين'),
                   SizedBox(height: 15),
@@ -102,6 +110,7 @@ class ProfileScreen extends StatelessWidget {
                         Icons.lock_outline_rounded,
                         color: GREEN_GRADIENT_DARK,
                       ),
+                      route: 'editPassword',
                       label: 'كلمة المرور',
                       value: ''),
                   SizedBox(height: 40),

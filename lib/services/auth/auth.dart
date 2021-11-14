@@ -25,14 +25,14 @@ class AuthServices extends GetConnect {
         });
 
     if (response.status.hasError) {
-      return Error.formJson(jsonDecode(response.body));
+      return Error.formJson(response.body);
     } else {
-      return Verify.formJson(jsonDecode(response.body));
+      return Verify.formJson(response.body);
     }
   }
 
   Future<dynamic> register(body) async {
-    final response = await post('$BASE_URL/auth/signup', <String, String>{
+    final response = await post('$BASE_URL/auth/signup', <String, dynamic>{
       'full_name': body['full_name'],
       'email': body['email'],
       'password': body['password'],
@@ -42,9 +42,9 @@ class AuthServices extends GetConnect {
       'address': body['address']
     });
     if (response.status.hasError) {
-      return Error.formJson(jsonDecode(response.body));
+      return Error.formJson(response.body);
     } else {
-      return Register.formJson(jsonDecode(response.body));
+      return Register.formJson(response.body);
     }
   }
 
@@ -52,11 +52,11 @@ class AuthServices extends GetConnect {
     final response = await post('$BASE_URL/auth/login',
         <String, String>{'email': body['email'], 'password': body['password']});
     if (response.status.hasError) {
-      return Error.formJson(jsonDecode(response.body));
+      return Error.formJson(response.body);
     } else {
       SharedPreferencesHelper.signToStorage(
           'token', jsonDecode(response.body)['response']['token'].toString());
-      return Login.formJson(jsonDecode(response.body));
+      return Login.formJson(response.body);
     }
   }
 }

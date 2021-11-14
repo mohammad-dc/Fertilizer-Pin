@@ -2,12 +2,18 @@ import 'package:fertilizer_pin/common/colors.dart';
 import 'package:fertilizer_pin/widgets/fertilizer_text.dart';
 import 'package:fertilizer_pin/widgets/icon_box.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class UserInfo extends StatelessWidget {
   final Icon icon;
   final String label, value;
+  final String route;
   const UserInfo(
-      {Key? key, required this.icon, required this.label, required this.value})
+      {Key? key,
+      required this.icon,
+      required this.label,
+      required this.value,
+      this.route = 'editName'})
       : super(key: key);
 
   @override
@@ -46,9 +52,12 @@ class UserInfo extends StatelessWidget {
                 SizedBox(
                   width: 3,
                 ),
-                Icon(
-                  Icons.arrow_forward_ios,
-                  size: 15,
+                GestureDetector(
+                  onTap: () => Get.toNamed('/$route'),
+                  child: Icon(
+                    Icons.arrow_forward_ios,
+                    size: 15,
+                  ),
                 )
               ],
             ),

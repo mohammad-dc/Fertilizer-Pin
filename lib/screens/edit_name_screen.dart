@@ -59,6 +59,7 @@ class EditNameScreen extends StatelessWidget {
                         FertilizerButton(
                           text: 'حفظ',
                           onPressed: () => controller.checkEditName(),
+                          loading: controller.loading.value,
                         ),
                       ],
                     ),

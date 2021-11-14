@@ -8,6 +8,8 @@ class EditEmailController extends GetxController with StateMixin<dynamic> {
 
   var email = '';
 
+  RxBool loading = false.obs;
+
   @override
   void onInit() {
     super.onInit();

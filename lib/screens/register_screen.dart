@@ -1,9 +1,12 @@
+import 'package:fertilizer_pin/common/colors.dart';
 import 'package:fertilizer_pin/controllers/auth/register.dart';
+import 'package:fertilizer_pin/models/city/city.dart';
 import 'package:fertilizer_pin/widgets/Form_Field.dart';
 import 'package:fertilizer_pin/widgets/button.dart';
 import 'package:fertilizer_pin/widgets/logo.dart';
 import 'package:fertilizer_pin/widgets/switch_to_login.dart';
 import 'package:fertilizer_pin/widgets/switch_to_register.dart';
+import 'package:fertilizer_pin/widgets/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:fertilizer_pin/widgets/fertilizer_text.dart';
 import 'package:get/get.dart';
@@ -18,7 +21,8 @@ class RegisterScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
-          child: GetBuilder<RegisterController>(
+          child: GetX<RegisterController>(
+            init: RegisterController(),
             builder: (controller) => Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Form(
@@ -40,9 +44,26 @@ class RegisterScreen extends StatelessWidget {
                         text: 'حساب جديد',
                         fontSize: 20,
                       ),
-                      SizedBox(
-                        height: 20,
-                      ),
+                      !controller.registerError.success &&
+                              controller.registerError.message.isNotEmpty
+                          ? Container(
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  FertilizerToast(
+                                      status: 'error',
+                                      text: controller.registerError.message),
+                                  SizedBox(
+                                    height: 20,
+                                  )
+                                ],
+                              ),
+                            )
+                          : SizedBox(
+                              height: 20,
+                            ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         child: Container(
@@ -94,15 +115,35 @@ class RegisterScreen extends StatelessWidget {
                               SizedBox(
                                 height: 20,
                               ),
-                              FertilizerFormField(
-                                  hintText: 'المدينة',
-                                  keyboardType: TextInputType.text,
-                                  controller: controller.addressController,
-                                  onSaved: (value) =>
-                                      controller.address = value!,
-                                  validator: (value) {
-                                    return;
-                                  }),
+                              Padding(
+                                padding: const EdgeInsets.all(1.0),
+                                child: Container(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: 5, horizontal: 10),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      color: GREY_LIGHT_COLOR),
+                                  child: DropdownButtonFormField<City>(
+                                      decoration: InputDecoration(
+                                          enabledBorder: UnderlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.transparent))),
+                                      hint: Text(
+                                        'المدينة',
+                                        style: TextStyle(
+                                            color: HINT_COLOR,
+                                            fontFamily: 'Montserrat-Light',
+                                            fontSize: 12),
+                                      ),
+                                      isExpanded: true,
+                                      value: controller.citySelected.value,
+                                      elevation: 1,
+                                      onChanged: (City? city) {
+                                        controller.onCitySelected(city!);
+                                      },
+                                      items: controller.cities),
+                                ),
+                              ),
                               SizedBox(
                                 height: 20,
                               ),
@@ -134,6 +175,7 @@ class RegisterScreen extends StatelessWidget {
                               FertilizerButton(
                                 text: 'تسجيل',
                                 onPressed: () => controller.checkRegister(),
+                                loading: controller.loading.value,
                               ),
                               SizedBox(
                                 height: 40,

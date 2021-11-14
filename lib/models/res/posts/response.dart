@@ -2,16 +2,17 @@ import 'package:fertilizer_pin/models/post/post.dart';
 import 'package:fertilizer_pin/models/user/user.dart';
 
 class PostResponse {
-  Post result;
+  List<Post> results;
 
-  PostResponse({required this.result});
+  PostResponse({required this.results});
 
   factory PostResponse.formJson(Map<String, dynamic> json) {
-    return PostResponse(result: resultParse(json['result']));
+    return PostResponse(results: resultParse(json['results']));
   }
 
-  static Post resultParse(body) {
-    Post post = new Post.formJson(body);
-    return post;
+  static List<Post> resultParse(body) {
+    var list = body as List;
+    List<Post> posts = list.map((e) => Post.formJson(e)).toList();
+    return posts;
   }
 }

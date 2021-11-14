@@ -1,4 +1,10 @@
+import 'package:fertilizer_pin/models/res/login/login.dart';
+import 'package:fertilizer_pin/models/res/login/response.dart';
+import 'package:fertilizer_pin/models/user/user.dart';
+import 'package:fertilizer_pin/models/error/error.dart';
+import 'package:fertilizer_pin/services/auth/auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoginController extends GetxController with StateMixin<dynamic> {
@@ -6,13 +12,21 @@ class LoginController extends GetxController with StateMixin<dynamic> {
 
   late TextEditingController emailController, passwordController;
 
+  var loginSuccess =
+      Login(success: false, response: LoginResponse(result: User())).obs();
+
+  var loginError = Error(success: false, message: '').obs();
+
+  RxBool loading = false.obs;
+
+  var authService = AuthServices();
+
   var email = '';
   var password = '';
 
   @override
   void onInit() {
     super.onInit();
-    print('object');
     emailController = TextEditingController();
     passwordController = TextEditingController();
   }
@@ -32,18 +46,31 @@ class LoginController extends GetxController with StateMixin<dynamic> {
 
   String? valideatePassword(String value) {
     if (value.length < 5) {
-      return 'كلمة المرور يجب ان تحتوي على الاقل 6 مدخلات';
+      return 'كلمة المرور يجب ان تحتوي على الاقل 5 مدخلات';
     }
     return null;
   }
 
-  void checkLogin() {
+  void checkLogin() async {
     final isValid = loginFormKey.currentState!.validate();
     if (!isValid) {
       return;
     }
+    loading(true);
     loginFormKey.currentState!.save();
-    print(email);
-    print(password);
+
+    Map<String, dynamic> body = {'email': email, 'password': password};
+
+    var response = await authService.login(body);
+    if (response != null) {
+      if (response is Error) {
+        loading(false);
+        loginError = response;
+      } else if (response is Login) {
+        loading(false);
+        loginSuccess = response;
+        print(response.response.result);
+      }
+    }
   }
 }

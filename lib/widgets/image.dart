@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class FertilizerImage extends StatelessWidget {
   final double width, height;
@@ -18,16 +19,19 @@ class FertilizerImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: width,
-      height: height,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(circular),
-          image: DecorationImage(
-              image: image
-                  ? NetworkImage(networkImage)
-                  : AssetImage(assetsImage) as ImageProvider,
-              fit: BoxFit.cover)),
+    return GestureDetector(
+      onTap: () => Get.toNamed('/profile'),
+      child: Container(
+        width: width,
+        height: height,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(circular),
+            image: DecorationImage(
+                image: image
+                    ? NetworkImage(networkImage)
+                    : AssetImage(assetsImage) as ImageProvider,
+                fit: BoxFit.cover)),
+      ),
     );
   }
 }

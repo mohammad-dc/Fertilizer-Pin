@@ -8,6 +8,8 @@ class EditFullNameController extends GetxController with StateMixin<dynamic> {
 
   var fullName = '';
 
+  RxBool loading = false.obs;
+
   @override
   void onInit() {
     super.onInit();

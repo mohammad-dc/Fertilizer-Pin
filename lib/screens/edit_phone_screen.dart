@@ -59,6 +59,7 @@ class EditPhoneScreen extends StatelessWidget {
                         FertilizerButton(
                           text: 'حفظ',
                           onPressed: () => controller.checkEditPhone(),
+                          loading: controller.loading.value,
                         ),
                       ],
                     ),

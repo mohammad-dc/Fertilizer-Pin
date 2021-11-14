@@ -9,6 +9,7 @@ const Color LINK_COLOR = Color(0xFFEBB23D);
 const Color RED_COLOR = Color(0xFFEF2929);
 const Color GREY_DARK_COLOR = Color(0xFFA7A7A7);
 const Color GREEN_OPACITY = Color.fromRGBO(82, 225, 158, 0.2);
+const Color RED_OPACITY = Color.fromRGBO(220, 52, 52, 0.5);
 
 // gradient
 const Color GREEN_GRADIENT_DARK = Color(0xFF52E19E);

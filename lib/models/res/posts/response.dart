@@ -1,5 +1,4 @@
 import 'package:fertilizer_pin/models/post/post.dart';
-import 'package:fertilizer_pin/models/user/user.dart';
 
 class PostResponse {
   List<Post> results;

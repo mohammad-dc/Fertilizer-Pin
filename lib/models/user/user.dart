@@ -26,15 +26,15 @@ class User {
   factory User.formJson(Map<String, dynamic> json) {
     return User(
         id: json['id'],
-        deviceId: json['deviceId'],
-        fullName: json['fullName'],
+        deviceId: json['device_id'],
+        fullName: json['full_name'],
         email: json['email'],
         password: json['password'],
         city: json['city'],
         address: json['address'],
         phone: json['phone'],
-        deviceUsername: json['deviceUsername'],
+        deviceUsername: json['pin_username'],
         image: json['image'],
-        devicePassword: json['devicePassword']);
+        devicePassword: json['pin_password']);
   }
 }

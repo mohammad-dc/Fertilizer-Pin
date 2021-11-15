@@ -16,16 +16,16 @@ class PostServeice extends GetConnect {
           jsonDecode(jsonEncode({'success': false, 'message': 'no token'})));
     }
 
-    final response = await get('$BASE_URL/auth/verify',
+    final response = await get('$BASE_URL/posts/get/$skip',
         headers: <String, String>{
           'Content-Type': 'application/json',
           'Authorization': 'Bearer $token'
         });
 
     if (response.status.hasError) {
-      return Error.formJson(jsonDecode(response.body));
+      return Error.formJson(response.body);
     } else {
-      return Posts.formJson(jsonDecode(response.body));
+      return Posts.formJson(response.body);
     }
   }
 }

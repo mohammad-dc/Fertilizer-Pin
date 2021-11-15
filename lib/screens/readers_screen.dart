@@ -1,8 +1,10 @@
+import 'package:fertilizer_pin/controllers/account/account.dart';
 import 'package:fertilizer_pin/widgets/fertilizer_text.dart';
 import 'package:fertilizer_pin/widgets/image.dart';
 import 'package:fertilizer_pin/widgets/reader.dart';
 import 'package:flutter/material.dart';
 import 'package:fertilizer_pin/common/colors.dart';
+import 'package:get/get.dart';
 
 class ReadersScreen extends StatelessWidget {
   const ReadersScreen({Key? key}) : super(key: key);
@@ -25,23 +27,27 @@ class ReadersScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              FertilizerImage(
-                                  width: 40,
-                                  height: 40,
-                                  networkImage:
-                                      'https://d5nunyagcicgy.cloudfront.net/external_assets/hero_examples/hair_beach_v391182663/original.jpeg'),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              FertilizerText(
-                                text: 'مرحبا بك , مرح',
-                                fontSize: 14,
-                              )
-                            ],
+                        GetBuilder<AccountController>(
+                          init: AccountController(),
+                          builder: (controller) => Container(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                FertilizerImage(
+                                    image: controller.account.image.length != 0,
+                                    width: 40,
+                                    height: 40,
+                                    networkImage: controller.account.image),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                FertilizerText(
+                                  text: 'مرحبا بك , ' +
+                                      controller.account.fullName.split(' ')[0],
+                                  fontSize: 14,
+                                )
+                              ],
+                            ),
                           ),
                         ),
                         Image.asset(

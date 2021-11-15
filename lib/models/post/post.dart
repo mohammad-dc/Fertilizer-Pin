@@ -2,7 +2,7 @@ class Post {
   int id;
   String title;
   String description;
-  DateTime createdAt;
+  String createdAt;
 
   Post(
       {this.id = 0,
@@ -15,6 +15,6 @@ class Post {
         id: json['id'],
         title: json['title'],
         description: json['description'],
-        createdAt: json['createdAt']);
+        createdAt: json['created_at']);
   }
 }

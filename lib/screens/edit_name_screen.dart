@@ -1,5 +1,5 @@
 import 'package:fertilizer_pin/common/colors.dart';
-import 'package:fertilizer_pin/controllers/user/edit_name.dart';
+import 'package:fertilizer_pin/controllers/account/edit_name.dart';
 import 'package:fertilizer_pin/widgets/Form_Field.dart';
 import 'package:fertilizer_pin/widgets/button.dart';
 import 'package:fertilizer_pin/widgets/fertilizer_text.dart';

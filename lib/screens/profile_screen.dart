@@ -1,4 +1,5 @@
 import 'package:fertilizer_pin/common/colors.dart';
+import 'package:fertilizer_pin/controllers/account/account.dart';
 import 'package:fertilizer_pin/widgets/fertilizer_text.dart';
 import 'package:fertilizer_pin/widgets/image.dart';
 import 'package:fertilizer_pin/widgets/logout_button.dart';
@@ -18,104 +19,109 @@ class ProfileScreen extends StatelessWidget {
           child: SingleChildScrollView(
               child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: Container(
-              alignment: Alignment.topRight,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  GestureDetector(
-                    onTap: () => Get.back(),
-                    child: Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(width: 1, color: BLACK_COLOR),
-                            borderRadius: BorderRadius.circular(8)),
-                        child: const Padding(
-                          padding: const EdgeInsets.all(3.0),
-                          child: const Icon(Icons.arrow_back),
-                        )),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    child: Center(
-                      child: const FertilizerImage(
-                          width: 100,
-                          height: 100,
-                          circular: 16,
-                          networkImage:
-                              'https://d5nunyagcicgy.cloudfront.net/external_assets/hero_examples/hair_beach_v391182663/original.jpeg'),
+            child: GetBuilder<AccountController>(
+              init: AccountController(),
+              builder: (controller) => Container(
+                alignment: Alignment.topRight,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    GestureDetector(
+                      onTap: () => Get.back(),
+                      child: Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(width: 1, color: BLACK_COLOR),
+                              borderRadius: BorderRadius.circular(8)),
+                          child: const Padding(
+                            padding: const EdgeInsets.all(3.0),
+                            child: const Icon(Icons.arrow_back),
+                          )),
                     ),
-                  ),
-                  SizedBox(height: 30),
-                  GestureDetector(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.camera_alt_outlined,
-                          size: 15,
-                          color: LINK_COLOR,
-                        ),
-                        SizedBox(
-                          width: 2,
-                        ),
-                        FertilizerText(
-                            text: 'تغير الصورة الشخصية',
-                            fontSize: 12,
-                            color: LINK_COLOR)
-                      ],
+                    SizedBox(
+                      height: 20,
                     ),
-                  ),
-                  SizedBox(height: 20),
-                  UserInfo(
-                      icon: Icon(
-                        Icons.account_circle_outlined,
-                        color: GREEN_GRADIENT_DARK,
+                    Container(
+                      child: Center(
+                        child: FertilizerImage(
+                            image: controller.account.image.length != 0,
+                            width: 100,
+                            height: 100,
+                            networkImage: controller.account.image),
                       ),
-                      route: 'editName',
-                      label: 'الاسم',
-                      value: 'محمد احمد'),
-                  SizedBox(height: 15),
-                  UserInfo(
-                      icon: Icon(
-                        Icons.email_outlined,
-                        color: GREEN_GRADIENT_DARK,
+                    ),
+                    SizedBox(height: 30),
+                    GestureDetector(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.camera_alt_outlined,
+                            size: 15,
+                            color: LINK_COLOR,
+                          ),
+                          SizedBox(
+                            width: 2,
+                          ),
+                          FertilizerText(
+                              text: 'تغير الصورة الشخصية',
+                              fontSize: 12,
+                              color: LINK_COLOR)
+                        ],
                       ),
-                      route: 'editEmail',
-                      label: 'البريد الالكتروني',
-                      value: 'mohamamd@gmail.com'),
-                  SizedBox(height: 15),
-                  UserInfo(
-                      icon: Icon(
-                        Icons.phone_android_rounded,
-                        color: GREEN_GRADIENT_DARK,
-                      ),
-                      route: 'editPhone',
-                      label: 'رقم الهاتف',
-                      value: '+97012345678'),
-                  SizedBox(height: 15),
-                  UserInfo(
-                      icon: Icon(
-                        Icons.location_on_outlined,
-                        color: GREEN_GRADIENT_DARK,
-                      ),
-                      route: 'editLocation',
-                      label: 'العنوان',
-                      value: 'اليامون, جنين'),
-                  SizedBox(height: 15),
-                  UserInfo(
-                      icon: Icon(
-                        Icons.lock_outline_rounded,
-                        color: GREEN_GRADIENT_DARK,
-                      ),
-                      route: 'editPassword',
-                      label: 'كلمة المرور',
-                      value: ''),
-                  SizedBox(height: 40),
-                  LogoutButton()
-                ],
+                    ),
+                    SizedBox(height: 20),
+                    UserInfo(
+                        icon: Icon(
+                          Icons.account_circle_outlined,
+                          color: GREEN_GRADIENT_DARK,
+                        ),
+                        route: 'editName',
+                        label: 'الاسم',
+                        value: controller.account.fullName),
+                    SizedBox(height: 15),
+                    UserInfo(
+                        icon: Icon(
+                          Icons.email_outlined,
+                          color: GREEN_GRADIENT_DARK,
+                        ),
+                        route: 'editEmail',
+                        label: 'البريد الالكتروني',
+                        value: controller.account.email),
+                    SizedBox(height: 15),
+                    UserInfo(
+                        icon: Icon(
+                          Icons.phone_android_rounded,
+                          color: GREEN_GRADIENT_DARK,
+                        ),
+                        route: 'editPhone',
+                        label: 'رقم الهاتف',
+                        value: controller.account.phone),
+                    SizedBox(height: 15),
+                    UserInfo(
+                        icon: Icon(
+                          Icons.location_on_outlined,
+                          color: GREEN_GRADIENT_DARK,
+                        ),
+                        route: 'editLocation',
+                        label: 'العنوان',
+                        value: controller.account.address +
+                            ',' +
+                            ' ' +
+                            controller.account.city),
+                    SizedBox(height: 15),
+                    UserInfo(
+                        icon: Icon(
+                          Icons.lock_outline_rounded,
+                          color: GREEN_GRADIENT_DARK,
+                        ),
+                        route: 'editPassword',
+                        label: 'كلمة المرور',
+                        value: ''),
+                    SizedBox(height: 40),
+                    LogoutButton()
+                  ],
+                ),
               ),
             ),
           )),

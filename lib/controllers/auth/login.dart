@@ -1,3 +1,4 @@
+import 'package:fertilizer_pin/controllers/account/account.dart';
 import 'package:fertilizer_pin/models/res/login/login.dart';
 import 'package:fertilizer_pin/models/res/login/response.dart';
 import 'package:fertilizer_pin/models/user/user.dart';
@@ -20,6 +21,8 @@ class LoginController extends GetxController with StateMixin<dynamic> {
   RxBool loading = false.obs;
 
   var authService = AuthServices();
+
+  User account = Get.find<AccountController>().account;
 
   var email = '';
   var password = '';
@@ -66,10 +69,13 @@ class LoginController extends GetxController with StateMixin<dynamic> {
       if (response is Error) {
         loading(false);
         loginError = response;
+        update();
       } else if (response is Login) {
         loading(false);
         loginSuccess = response;
-        print(response.response.result);
+        account = response.response.result;
+        Get.offNamed('/home');
+        update();
       }
     }
   }

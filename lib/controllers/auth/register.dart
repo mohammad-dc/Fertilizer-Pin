@@ -149,11 +149,13 @@ class RegisterController extends GetxController with StateMixin<dynamic> {
       if (response is Error) {
         registerError = response;
         loading(false);
+        update();
       } else if (response is Register) {
         registerSuccess = response;
         loading(false);
         Get.snackbar('تم انشاء الحساب بنجاح',
             'شكرا لك سيدي على الانضمام, سيتم التواصل معك لاحقا من اجل تأكيد تفعيل الحساب');
+        update();
       }
     }
   }

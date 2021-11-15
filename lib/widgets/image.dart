@@ -13,7 +13,7 @@ class FertilizerImage extends StatelessWidget {
       this.height = 100,
       this.circular = 8,
       required this.networkImage,
-      this.assetsImage = '/assets/images/user.png',
+      this.assetsImage = 'assets/images/user.png',
       this.image = true})
       : super(key: key);
 

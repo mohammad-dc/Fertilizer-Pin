@@ -55,7 +55,7 @@ class AuthServices extends GetConnect {
       return Error.formJson(response.body);
     } else {
       SharedPreferencesHelper.signToStorage(
-          'token', jsonDecode(response.body)['response']['token'].toString());
+          'token', response.body['response']['token']);
       return Login.formJson(response.body);
     }
   }

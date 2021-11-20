@@ -17,7 +17,8 @@ class EditEmailScreen extends StatelessWidget {
           backgroundColor: WIHTE_COLOR,
           body: SafeArea(
             child: SingleChildScrollView(
-              child: GetBuilder<EditEmailController>(
+              child: GetX<EditEmailController>(
+                init: EditEmailController(),
                 builder: (controller) => Form(
                   key: controller.editEmailFormKey,
                   autovalidateMode: AutovalidateMode.onUserInteraction,

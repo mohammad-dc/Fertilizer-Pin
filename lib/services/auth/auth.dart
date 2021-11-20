@@ -23,7 +23,6 @@ class AuthServices extends GetConnect {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer $token'
         });
-
     if (response.status.hasError) {
       return Error.formJson(response.body);
     } else {

@@ -74,8 +74,8 @@ class LoginController extends GetxController with StateMixin<dynamic> {
         loading(false);
         loginSuccess = response;
         account = response.response.result;
-        Get.offNamed('/home');
         update();
+        Get.offNamed('/home');
       }
     }
   }

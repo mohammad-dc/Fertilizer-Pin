@@ -17,7 +17,8 @@ class EditNameScreen extends StatelessWidget {
           backgroundColor: WIHTE_COLOR,
           body: SafeArea(
             child: SingleChildScrollView(
-              child: GetBuilder<EditFullNameController>(
+              child: GetX<EditFullNameController>(
+                init: EditFullNameController(),
                 builder: (controller) => Form(
                   key: controller.editFullNameFormKey,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -58,7 +59,7 @@ class EditNameScreen extends StatelessWidget {
                         ),
                         FertilizerButton(
                           text: 'حفظ',
-                          onPressed: () => controller.checkEditName(),
+                          onPressed: () => controller.checkEditFullName(),
                           loading: controller.loading.value,
                         ),
                       ],

@@ -1,4 +1,5 @@
 import 'package:fertilizer_pin/common/colors.dart';
+import 'package:fertilizer_pin/config/config.dart';
 import 'package:fertilizer_pin/controllers/account/account.dart';
 import 'package:fertilizer_pin/widgets/fertilizer_text.dart';
 import 'package:fertilizer_pin/widgets/image.dart';
@@ -47,11 +48,13 @@ class ProfileScreen extends StatelessWidget {
                             image: controller.account.image.length != 0,
                             width: 100,
                             height: 100,
-                            networkImage: controller.account.image),
+                            networkImage:
+                                "$IMAGE_URL/" + controller.account.image),
                       ),
                     ),
                     SizedBox(height: 30),
                     GestureDetector(
+                      onTap: () => controller.changeImageProfile(),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

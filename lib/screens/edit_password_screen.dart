@@ -17,7 +17,8 @@ class EditPasswordScreen extends StatelessWidget {
           backgroundColor: WIHTE_COLOR,
           body: SafeArea(
             child: SingleChildScrollView(
-              child: GetBuilder<EditPasswordController>(
+              child: GetX<EditPasswordController>(
+                init: EditPasswordController(),
                 builder: (controller) => Form(
                   key: controller.editPasswordFormKey,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -47,7 +48,8 @@ class EditPasswordScreen extends StatelessWidget {
                         ),
                         FertilizerFormField(
                           hintText: 'كلمة المرور الاساسية',
-                          keyboardType: TextInputType.emailAddress,
+                          keyboardType: TextInputType.text,
+                          obscureText: true,
                           controller: controller.passwordController,
                           onSaved: (value) => controller.password = value!,
                           validator: (value) =>
@@ -58,7 +60,8 @@ class EditPasswordScreen extends StatelessWidget {
                         ),
                         FertilizerFormField(
                           hintText: 'كلمة المرور الجديدة',
-                          keyboardType: TextInputType.emailAddress,
+                          keyboardType: TextInputType.text,
+                          obscureText: true,
                           controller: controller.newPasswordController,
                           onSaved: (value) => controller.newPassword = value!,
                           validator: (value) =>
@@ -69,7 +72,8 @@ class EditPasswordScreen extends StatelessWidget {
                         ),
                         FertilizerFormField(
                           hintText: 'تأكيد كلمة المرور',
-                          keyboardType: TextInputType.emailAddress,
+                          keyboardType: TextInputType.text,
+                          obscureText: true,
                           controller: controller.confirmPassowrdController,
                           onSaved: (value) =>
                               controller.confirmPassword = value!,

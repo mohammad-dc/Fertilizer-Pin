@@ -17,7 +17,8 @@ class EditPhoneScreen extends StatelessWidget {
           backgroundColor: WIHTE_COLOR,
           body: SafeArea(
             child: SingleChildScrollView(
-              child: GetBuilder<EditPhoneController>(
+              child: GetX<EditPhoneController>(
+                init: EditPhoneController(),
                 builder: (controller) => Form(
                   key: controller.editPhoneFormKey,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -47,7 +48,7 @@ class EditPhoneScreen extends StatelessWidget {
                         ),
                         FertilizerFormField(
                           hintText: 'رقم الهاتف',
-                          keyboardType: TextInputType.emailAddress,
+                          keyboardType: TextInputType.phone,
                           controller: controller.phoneController,
                           onSaved: (value) => controller.phone = value!,
                           validator: (value) =>

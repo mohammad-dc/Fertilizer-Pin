@@ -1,4 +1,5 @@
 import 'package:fertilizer_pin/common/colors.dart';
+import 'package:fertilizer_pin/config/config.dart';
 import 'package:fertilizer_pin/controllers/account/account.dart';
 import 'package:fertilizer_pin/controllers/post/post.dart';
 import 'package:fertilizer_pin/widgets/image.dart';
@@ -22,7 +23,7 @@ class PostsScreen extends StatelessWidget {
                   image: controller.account.image.length != 0,
                   width: 40,
                   height: 40,
-                  networkImage: controller.account.image),
+                  networkImage: "$IMAGE_URL/" + controller.account.image),
             ),
             actions: [
               Image.asset(

@@ -1,3 +1,4 @@
+import 'package:fertilizer_pin/config/config.dart';
 import 'package:fertilizer_pin/controllers/account/account.dart';
 import 'package:fertilizer_pin/widgets/fertilizer_text.dart';
 import 'package:fertilizer_pin/widgets/image.dart';
@@ -37,7 +38,8 @@ class ReadersScreen extends StatelessWidget {
                                     image: controller.account.image.length != 0,
                                     width: 40,
                                     height: 40,
-                                    networkImage: controller.account.image),
+                                    networkImage: "$IMAGE_URL/" +
+                                        controller.account.image),
                                 SizedBox(
                                   width: 5,
                                 ),

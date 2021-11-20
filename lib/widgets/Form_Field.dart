@@ -21,6 +21,8 @@ class FertilizerFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      style: TextStyle(
+          color: BLACK_COLOR, fontFamily: 'Montserrat-SemiBold', fontSize: 12),
       controller: controller,
       keyboardType: keyboardType,
       obscureText: obscureText,

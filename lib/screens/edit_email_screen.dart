@@ -30,15 +30,18 @@ class EditEmailScreen extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                        width: 1, color: BLACK_COLOR),
-                                    borderRadius: BorderRadius.circular(8)),
-                                child: const Padding(
-                                  padding: const EdgeInsets.all(3.0),
-                                  child: const Icon(Icons.arrow_back),
-                                )),
+                            GestureDetector(
+                              onTap: () => Get.back(),
+                              child: Container(
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                          width: 1, color: BLACK_COLOR),
+                                      borderRadius: BorderRadius.circular(8)),
+                                  child: const Padding(
+                                    padding: const EdgeInsets.all(3.0),
+                                    child: const Icon(Icons.arrow_back),
+                                  )),
+                            ),
                             FertilizerText(text: 'البريد الالكتروني'),
                             FertilizerText(text: '')
                           ],

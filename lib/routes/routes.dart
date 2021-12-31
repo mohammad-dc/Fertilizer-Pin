@@ -6,6 +6,7 @@ import 'package:fertilizer_pin/screens/edit_phone_screen.dart';
 import 'package:fertilizer_pin/screens/home_screen.dart';
 import 'package:fertilizer_pin/screens/loading_screen.dart';
 import 'package:fertilizer_pin/screens/login_screen.dart';
+import 'package:fertilizer_pin/screens/no_internet_screen.dart';
 import 'package:fertilizer_pin/screens/profile_screen.dart';
 import 'package:fertilizer_pin/screens/register_screen.dart';
 import 'package:get/get.dart';
@@ -45,6 +46,10 @@ class Routes {
     GetPage(
         name: '/editPassword',
         page: () => EditPasswordScreen(),
+        transition: Transition.zoom),
+    GetPage(
+        name: '/noInternet',
+        page: () => NoInternetConnectionScreen(),
         transition: Transition.zoom),
   ];
 }

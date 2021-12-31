@@ -27,7 +27,6 @@ class AccountController extends GetxController with StateMixin<dynamic> {
   var picker = ImagePicker();
 
   RxBool updateImageLoading = false.obs;
-
   @override
   void onInit() {
     super.onInit();

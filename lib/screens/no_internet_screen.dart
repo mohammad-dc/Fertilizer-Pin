@@ -1,7 +1,9 @@
 import 'package:fertilizer_pin/common/colors.dart';
+import 'package:fertilizer_pin/controllers/app/app.dart';
 import 'package:fertilizer_pin/widgets/button.dart';
 import 'package:fertilizer_pin/widgets/fertilizer_text.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class NoInternetConnectionScreen extends StatelessWidget {
   const NoInternetConnectionScreen({Key? key}) : super(key: key);
@@ -30,10 +32,15 @@ class NoInternetConnectionScreen extends StatelessWidget {
             SizedBox(
               height: 30,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40),
-              child: FertilizerButton(
-                  text: 'اعادة الاتصال', onPressed: () => null, loading: false),
+            GetBuilder<AppController>(
+              builder: (controller) => Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 40),
+                child: FertilizerButton(
+                    text: 'اعادة الاتصال',
+                    onPressed: () =>
+                        controller.checkAppInternetConnection(true, true),
+                    loading: controller.loading.value),
+              ),
             )
           ],
         ),

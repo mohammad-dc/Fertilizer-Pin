@@ -3,18 +3,20 @@ import 'dart:io';
 import 'package:fertilizer_pin/config/config.dart';
 import 'package:fertilizer_pin/controllers/account/account.dart';
 import 'package:fertilizer_pin/controllers/city/city.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:get/get.dart';
 
 class AppController extends GetxController with StateMixin<dynamic> {
   RxInt currentPage = 0.obs;
 
-  var accountController = Get.put(AccountController());
-  var cityController = Get.put(CityController());
+  RxBool appInternetConnection = false.obs;
+
+  RxBool loading = false.obs;
 
   @override
   void onInit() {
     super.onInit();
-    checkInternetConnection();
+    checkAppInternetConnection(false, false);
     onPageTapped(currentPage.value);
   }
 
@@ -22,15 +24,22 @@ class AppController extends GetxController with StateMixin<dynamic> {
     currentPage(page);
   }
 
-  void checkInternetConnection() async {
-    try {
-      final result = await InternetAddress.lookup(URI);
-      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-        accountController.verify();
-        cityController.getAllCities();
+  void checkAppInternetConnection(bool click, bool load) async {
+    loading(load);
+    bool result = await InternetConnectionChecker().hasConnection;
+    if (result == true) {
+      loading(false);
+      var accountController = Get.put(AccountController());
+      var cityController = Get.put(CityController());
+      accountController.verify();
+      cityController.getAllCities();
+    } else {
+      if (click) {
+        checkAppInternetConnection(click, load);
+      } else {
+        loading(false);
+        Get.offAllNamed("/noInternet");
       }
-    } on SocketException catch (_) {
-      Get.offAllNamed("/noInternet");
     }
   }
 }

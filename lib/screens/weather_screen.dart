@@ -1,3 +1,4 @@
+import 'package:fertilizer_pin/common/colors.dart';
 import 'package:flutter/material.dart';
 
 class WeatherScreen extends StatelessWidget {
@@ -5,6 +6,8 @@ class WeatherScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      backgroundColor: WIHTE_COLOR,
+    );
   }
 }

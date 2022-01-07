@@ -1,12 +1,18 @@
 import 'package:fertilizer_pin/common/colors.dart';
 import 'package:fertilizer_pin/widgets/fertilizer_text.dart';
+import 'package:fertilizer_pin/widgets/post_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class Post extends StatelessWidget {
   final String content;
+  final String title;
   final DateTime date;
-  const Post({Key? key, required this.content, required this.date})
+  const Post(
+      {Key? key,
+      required this.content,
+      required this.date,
+      required this.title})
       : super(key: key);
 
   @override
@@ -76,12 +82,30 @@ class Post extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(10),
                 child: FertilizerText(
-                  text: content,
+                  text: content.length > 200
+                      ? content.substring(0, 200)
+                      : content,
                   fontSize: 13,
                   fontFamily: 'Montserrat-Light',
                   color: GREY_DARK_COLOR,
                 ),
               ),
+            ),
+            Container(
+              child: content.length > 200
+                  ? Container(
+                      padding: const EdgeInsets.all(10),
+                      child: GestureDetector(
+                          onTap: () => showDialog(
+                              context: context,
+                              builder: (BuildContext context) =>
+                                  PostDialog(content: content, title: title)),
+                          child: FertilizerText(
+                              text: "عرض المزيد",
+                              color: LINK_COLOR,
+                              fontSize: 13)),
+                    )
+                  : null,
             )
           ],
         ),

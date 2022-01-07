@@ -57,7 +57,7 @@ class EditEmailController extends GetxController with StateMixin<dynamic> {
         editSuccess = response;
         account.email = email;
         update();
-        Get.offNamed('/profile');
+        Get.back();
       }
     }
   }

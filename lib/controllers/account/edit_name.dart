@@ -57,7 +57,7 @@ class EditFullNameController extends GetxController with StateMixin<dynamic> {
         editSuccess = response;
         account.fullName = fullName;
         update();
-        Get.offNamed('/profile');
+        Get.back();
       }
     }
   }

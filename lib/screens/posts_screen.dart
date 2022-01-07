@@ -45,6 +45,7 @@ class PostsScreen extends StatelessWidget {
                         (element) => Column(
                           children: [
                             Post(
+                                title: element.title,
                                 content: element.description,
                                 date: DateTime.parse(element.createdAt)),
                             SizedBox(

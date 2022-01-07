@@ -80,7 +80,7 @@ class EditPasswordController extends GetxController with StateMixin<dynamic> {
         editSuccess = response;
         account.password = newPassword;
         update();
-        Get.offNamed('/profile');
+        Get.back();
       }
     }
   }

@@ -56,7 +56,7 @@ class EditPhoneController extends GetxController with StateMixin<dynamic> {
         editSuccess = response;
         account.phone = phone;
         update();
-        Get.offNamed('/profile');
+        Get.back();
       }
     }
   }

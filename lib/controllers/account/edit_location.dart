@@ -101,7 +101,7 @@ class EditLocationController extends GetxController with StateMixin<dynamic> {
         account.address = address;
         account.city = citySelected.value.city;
         update();
-        Get.offNamed('/profile');
+        Get.back();
       }
     }
   }

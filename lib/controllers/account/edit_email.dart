@@ -1,3 +1,4 @@
+import 'package:fertilizer_pin/models/user/user.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fertilizer_pin/models/error/error.dart';
 import 'package:fertilizer_pin/models/res/update/update.dart';

@@ -27,22 +27,21 @@ class AccountController extends GetxController with StateMixin<dynamic> {
   var picker = ImagePicker();
 
   RxBool updateImageLoading = false.obs;
-  @override
-  void onInit() {
-    super.onInit();
-    verify();
-  }
+
+  RxBool loading = false.obs;
 
   void verify() async {
+    loading(true);
     var response = await authService.verifyAccount();
     if (response != null) {
       if (response is Error) {
+        loading(false);
         Timer(Duration(seconds: 3), () => Get.offNamed('/login'));
       } else if (response is Verify) {
         verifySuccess = response;
-        account = verifySuccess.response.result;
+        account = response.response.result;
+        loading(false);
         Get.offNamed('/home');
-        update();
       }
     }
   }

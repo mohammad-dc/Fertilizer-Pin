@@ -6,17 +6,11 @@ import 'package:fertilizer_pin/services/city/city.dart';
 import 'package:get/get.dart';
 
 class CityController extends GetxController with StateMixin<dynamic> {
-  var citySuccess =
+  Cities citySuccess =
       Cities(response: CitiesResponse(results: List<City>.empty())).obs();
   var cityError = Error(success: false, message: '').obs();
 
   var citiesService = CitiesService();
-
-  @override
-  void onInit() {
-    super.onInit();
-    getAllCities();
-  }
 
   void getAllCities() async {
     final response = await citiesService.getAllCities();

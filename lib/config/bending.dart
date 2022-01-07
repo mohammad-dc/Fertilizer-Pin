@@ -8,7 +8,7 @@ class AppBindings extends Bindings {
   @override
   void dependencies() {
     Get.put(AppController());
-    // Get.put(AccountController());
-    // Get.put(CityController());
+    Get.put(AccountController());
+    Get.put(CityController());
   }
 }

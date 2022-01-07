@@ -28,12 +28,10 @@ class PostController extends GetxController with StateMixin<dynamic> {
       if (response is Error) {
         postError = response;
         loading(false);
-        update();
       } else if (response is Posts) {
         postSuccess = response;
         posts.insertAll(posts.length, response.response.results);
         loading(false);
-        update();
       }
     }
   }

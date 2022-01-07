@@ -8,7 +8,8 @@ import 'package:fertilizer_pin/common/colors.dart';
 import 'package:get/get.dart';
 
 class ReadersScreen extends StatelessWidget {
-  const ReadersScreen({Key? key}) : super(key: key);
+  final AccountController accountController = Get.find();
+  ReadersScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,24 +29,39 @@ class ReadersScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        GetBuilder<AccountController>(
-                          init: AccountController(),
-                          builder: (controller) => Container(
+                        Obx(
+                          () => Container(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                FertilizerImage(
-                                    image: controller.account.image.length != 0,
-                                    width: 40,
-                                    height: 40,
-                                    networkImage: "$IMAGE_URL/" +
-                                        controller.account.image),
+                                Container(
+                                  child: accountController.loading.value
+                                      ? Center(
+                                          child: SizedBox(
+                                          height: 25,
+                                          width: 25,
+                                          child: CircularProgressIndicator(
+                                            valueColor:
+                                                AlwaysStoppedAnimation<Color>(
+                                                    BLACK_COLOR),
+                                          ),
+                                        ))
+                                      : FertilizerImage(
+                                          image: accountController
+                                                  .account.image.length !=
+                                              0,
+                                          width: 40,
+                                          height: 40,
+                                          networkImage: "$IMAGE_URL/" +
+                                              accountController.account.image),
+                                ),
                                 SizedBox(
                                   width: 5,
                                 ),
                                 FertilizerText(
                                   text: 'مرحبا بك , ' +
-                                      controller.account.fullName.split(' ')[0],
+                                      accountController.account.fullName
+                                          .split(' ')[0],
                                   fontSize: 14,
                                 )
                               ],

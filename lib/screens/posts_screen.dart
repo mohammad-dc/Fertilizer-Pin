@@ -2,6 +2,7 @@ import 'package:fertilizer_pin/common/colors.dart';
 import 'package:fertilizer_pin/config/config.dart';
 import 'package:fertilizer_pin/controllers/account/account.dart';
 import 'package:fertilizer_pin/controllers/post/post.dart';
+import 'package:fertilizer_pin/widgets/fertilizer_text.dart';
 import 'package:fertilizer_pin/widgets/image.dart';
 import 'package:fertilizer_pin/widgets/post.dart';
 import 'package:flutter/material.dart';
@@ -39,23 +40,37 @@ class PostsScreen extends StatelessWidget {
             child: GetX<PostController>(
               init: PostController(),
               builder: (controller) => Container(
-                child: Column(
-                  children: controller.posts.value
-                      .map(
-                        (element) => Column(
-                          children: [
-                            Post(
-                                title: element.title,
-                                content: element.description,
-                                date: DateTime.parse(element.createdAt)),
-                            SizedBox(
-                              height: 10,
-                            )
-                          ],
+                child: controller.loading.value
+                    ? Center(
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                              GREEN_GRADIENT_DARK),
                         ),
                       )
-                      .toList(),
-                ),
+                    : controller.posts.length == 0
+                        ? Center(
+                            child: FertilizerText(
+                            text: "لا يوجد منشورات للان",
+                            fontSize: 12,
+                          ))
+                        : Column(
+                            children: controller.posts.value
+                                .map(
+                                  (element) => Column(
+                                    children: [
+                                      Post(
+                                          title: element.title,
+                                          content: element.description,
+                                          date: DateTime.parse(
+                                              element.createdAt)),
+                                      SizedBox(
+                                        height: 10,
+                                      )
+                                    ],
+                                  ),
+                                )
+                                .toList(),
+                          ),
               ),
             ),
           )),

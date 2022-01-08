@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:fertilizer_pin/config/storage.dart';
+import 'package:fertilizer_pin/controllers/readers/readers.dart';
 import 'package:fertilizer_pin/models/res/update/update_image.dart';
 import 'package:fertilizer_pin/models/res/verify/response.dart';
 import 'package:fertilizer_pin/models/res/verify/verify.dart';
@@ -23,6 +24,7 @@ class AccountController extends GetxController with StateMixin<dynamic> {
 
   var authService = AuthServices();
   var userServices = UserServices();
+  var readersController = Get.find<ReaderController>();
 
   var picker = ImagePicker();
 
@@ -40,6 +42,7 @@ class AccountController extends GetxController with StateMixin<dynamic> {
       } else if (response is Verify) {
         verifySuccess = response;
         account = response.response.result;
+        readersController.getPinData(account.deviceId.toString());
         loading(false);
         Get.offNamed('/home');
       }

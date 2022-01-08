@@ -16,11 +16,11 @@ const Color GREEN_GRADIENT_DARK = Color(0xFF52E19E);
 const Color GREEN_GRADIENT_LIGHT = Color(0xFF81FFC4);
 
 // reders
-const Color PH_COLOR = Color(0xFF32A7E2);
+const Color PH_COLOR = Color(0xFFDC3434);
 const Color EC_COLOR = Color(0xFFB548C6);
 const Color TDS_COLOR = Color(0xFFFF8700);
-const Color HU_COLOR = Color(0xFFDC3434);
+const Color HU_COLOR = Color(0xFF32A7E2);
 const Color N_COLOR = Color(0xFF4BA83D);
 const Color P_COLOR = Color(0xFF156CDE);
 const Color K_COLOR = Color(0xFFFB3F8C);
-// const Color RED_COLOR = Color(0xFFEF2929);
+const Color ET0_COLOR = Color(0xFF472836);

@@ -1,9 +1,12 @@
 import 'package:fertilizer_pin/controllers/account/account.dart';
+import 'package:fertilizer_pin/controllers/auth/readersLogin.dart';
+import 'package:fertilizer_pin/models/readers/login.dart';
 import 'package:fertilizer_pin/models/res/login/login.dart';
 import 'package:fertilizer_pin/models/res/login/response.dart';
 import 'package:fertilizer_pin/models/user/user.dart';
 import 'package:fertilizer_pin/models/error/error.dart';
 import 'package:fertilizer_pin/services/auth/auth.dart';
+import 'package:fertilizer_pin/services/reders/readers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,7 +18,6 @@ class LoginController extends GetxController with StateMixin<dynamic> {
 
   var loginSuccess =
       Login(success: false, response: LoginResponse(result: User())).obs();
-
   var loginError = Error(success: false, message: '').obs();
 
   RxBool loading = false.obs;
@@ -23,6 +25,7 @@ class LoginController extends GetxController with StateMixin<dynamic> {
   var authService = AuthServices();
 
   User account = Get.find<AccountController>().account;
+  var readersLoginController = Get.put(ReadersLoginController());
 
   var email = '';
   var password = '';
@@ -69,12 +72,15 @@ class LoginController extends GetxController with StateMixin<dynamic> {
       if (response is Error) {
         loading(false);
         loginError = response;
-        update();
       } else if (response is Login) {
         loading(false);
         loginSuccess = response;
         account = response.response.result;
-        update();
+        Map<String, dynamic> bodyLoginPin = {
+          'username': account.deviceUsername,
+          'password': account.devicePassword
+        };
+        readersLoginController.pinLogin(bodyLoginPin);
         Get.offNamed('/home');
       }
     }

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 class Reader extends StatelessWidget {
   final String text;
-  final double value;
+  final String value;
   final Color color;
   const Reader(
       {Key? key, required this.text, required this.value, required this.color})
@@ -38,8 +38,8 @@ class Reader extends StatelessWidget {
               height: 15,
             ),
             FertilizerText(
-              text: value.toString(),
-              fontSize: 20,
+              text: value,
+              fontSize: 13,
             )
           ],
         ),

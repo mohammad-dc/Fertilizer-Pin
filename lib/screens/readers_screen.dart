@@ -1,5 +1,6 @@
 import 'package:fertilizer_pin/config/config.dart';
 import 'package:fertilizer_pin/controllers/account/account.dart';
+import 'package:fertilizer_pin/controllers/readers/readers.dart';
 import 'package:fertilizer_pin/widgets/fertilizer_text.dart';
 import 'package:fertilizer_pin/widgets/image.dart';
 import 'package:fertilizer_pin/widgets/reader.dart';
@@ -9,6 +10,7 @@ import 'package:get/get.dart';
 
 class ReadersScreen extends StatelessWidget {
   final AccountController accountController = Get.find();
+  final ReaderController readerController = Get.find();
   ReadersScreen({Key? key}) : super(key: key);
 
   @override
@@ -85,44 +87,102 @@ class ReadersScreen extends StatelessWidget {
                     SizedBox(
                       height: 20,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Reader(text: 'PH', value: 4.22, color: PH_COLOR),
-                        Reader(text: 'EC', value: 5.22, color: EC_COLOR),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Reader(text: 'TDS', value: 6.22, color: TDS_COLOR),
-                        Reader(text: 'HU', value: 7.22, color: HU_COLOR),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Reader(text: 'N', value: 8.22, color: N_COLOR),
-                        Reader(text: 'P', value: 9.22, color: P_COLOR),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Reader(text: 'K', value: 3.22, color: K_COLOR),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
+                    Obx(
+                      () => Container(
+                        child: readerController.loading.value
+                            ? Center(
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                      GREEN_GRADIENT_DARK),
+                                ),
+                              )
+                            : readerController.readers.sensors.length == 0
+                                ? Center(
+                                    child: FertilizerText(
+                                    text: 'لا يوجد قراءات للان',
+                                    fontSize: 12,
+                                  ))
+                                : Column(
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Reader(
+                                              text: 'PH',
+                                              value: readerController
+                                                  .readers.sensors[3].value,
+                                              color: PH_COLOR),
+                                          Reader(
+                                              text: 'EC',
+                                              value: readerController
+                                                  .readers.sensors[2].value,
+                                              color: EC_COLOR),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Reader(
+                                              text: 'T',
+                                              value: readerController
+                                                  .readers.sensors[1].value,
+                                              color: TDS_COLOR),
+                                          Reader(
+                                              text: 'HU',
+                                              value: readerController
+                                                  .readers.sensors[0].value,
+                                              color: HU_COLOR),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Reader(
+                                              text: 'N',
+                                              value: readerController
+                                                  .readers.sensors[4].value,
+                                              color: N_COLOR),
+                                          Reader(
+                                              text: 'P',
+                                              value: readerController
+                                                  .readers.sensors[5].value,
+                                              color: P_COLOR),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Reader(
+                                              text: 'K',
+                                              value: readerController
+                                                  .readers.sensors[6].value,
+                                              color: K_COLOR),
+                                          Reader(
+                                              text: 'ET0',
+                                              value: readerController
+                                                  .readers.sensors[6].value,
+                                              color: ET0_COLOR),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 20,
+                                      )
+                                    ],
+                                  ),
+                      ),
                     )
                   ],
                 ),

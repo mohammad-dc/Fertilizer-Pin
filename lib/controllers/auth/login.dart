@@ -24,7 +24,7 @@ class LoginController extends GetxController with StateMixin<dynamic> {
 
   var authService = AuthServices();
 
-  User account = Get.find<AccountController>().account;
+  var account = Get.find<AccountController>();
   var readersLoginController = Get.put(ReadersLoginController());
 
   var email = '';
@@ -75,11 +75,13 @@ class LoginController extends GetxController with StateMixin<dynamic> {
       } else if (response is Login) {
         loading(false);
         loginSuccess = response;
-        account = response.response.result;
+        account.account = response.response.result;
         Map<String, dynamic> bodyLoginPin = {
-          'username': account.deviceUsername,
-          'password': account.devicePassword
+          'username': account.account.deviceUsername,
+          'password': account.account.devicePassword,
+          'devide_id': account.account.deviceId
         };
+        account.verify();
         readersLoginController.pinLogin(bodyLoginPin);
         Get.offNamed('/home');
       }

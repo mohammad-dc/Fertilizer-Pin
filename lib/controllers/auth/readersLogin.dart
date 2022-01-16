@@ -24,7 +24,7 @@ class ReadersLoginController extends GetxController with StateMixin<dynamic> {
         loading(false);
       } else if (response is ReadersLogin) {
         readersLogin = response;
-        // readerController.getPinData(body['device_id']);
+        readerController.getPinData(body['devide_id'].toString());
         loading(false);
       }
     }

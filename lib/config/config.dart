@@ -1,4 +1,4 @@
-const SERVER_NAME = "192.168.1.101"; //your server's ip address
+const SERVER_NAME = "192.168.1.104"; //your server's ip address
 const PORT = 5000;
 const PIN_BASE_URL = "http://ec2-3-90-85-115.compute-1.amazonaws.com:8000";
 const URI = "http://$SERVER_NAME:$PORT";

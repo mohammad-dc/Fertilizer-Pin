@@ -37,12 +37,12 @@ class HomeScreen extends StatelessWidget {
                     Icons.my_library_books_rounded,
                   ),
                   label: 'المنشورات'),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.cloud_queue,
-                ),
-                label: 'الطقس',
-              ),
+              // BottomNavigationBarItem(
+              //   icon: Icon(
+              //     Icons.cloud_queue,
+              //   ),
+              //   label: 'الطقس',
+              // ),
             ],
           ),
         ),

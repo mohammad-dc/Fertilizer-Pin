@@ -172,8 +172,29 @@ class ReadersScreen extends StatelessWidget {
                                               color: K_COLOR),
                                           Reader(
                                               text: 'ET0',
-                                              value: readerController
-                                                  .readers.sensors[6].value,
+                                              value: DateTime.now().month == 1
+                                                  ? (1 * 0.7).toString() + ' ml'
+                                                  : DateTime.now().month == 2
+                                                      ? (0.5 * 0.7).toString() +
+                                                          ' ml'
+                                                      : DateTime.now().month ==
+                                                              3
+                                                          ? (0.5 * 0.7)
+                                                                  .toString() +
+                                                              ' ml'
+                                                          : DateTime.now()
+                                                                      .month ==
+                                                                  4
+                                                              ? (0.7 * 0.7)
+                                                                      .toString() +
+                                                                  ' ml'
+                                                              : DateTime.now()
+                                                                          .month ==
+                                                                      5
+                                                                  ? (0.3 * 0.7)
+                                                                          .toString() +
+                                                                      ' ml'
+                                                                  : '0 ml',
                                               color: ET0_COLOR),
                                         ],
                                       ),

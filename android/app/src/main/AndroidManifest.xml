@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.fertilizer_pin">
    <application
-        android:label="fertilizer_pin"
+        android:label="Fertilizer Pin"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

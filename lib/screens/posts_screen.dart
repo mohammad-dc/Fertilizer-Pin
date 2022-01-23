@@ -54,22 +54,52 @@ class PostsScreen extends StatelessWidget {
                             fontSize: 12,
                           ))
                         : Column(
-                            children: controller.posts.value
-                                .map(
-                                  (element) => Column(
-                                    children: [
-                                      Post(
-                                          title: element.title,
-                                          content: element.description,
-                                          date: DateTime.parse(
-                                              element.createdAt)),
-                                      SizedBox(
-                                        height: 10,
-                                      )
-                                    ],
-                                  ),
-                                )
-                                .toList(),
+                            children: [
+                              Column(
+                                children: controller.posts.value
+                                    .map(
+                                      (element) => Column(
+                                        children: [
+                                          Post(
+                                              title: element.title,
+                                              content: element.description,
+                                              date: DateTime.parse(
+                                                  element.createdAt)),
+                                          SizedBox(
+                                            height: 10,
+                                          )
+                                        ],
+                                      ),
+                                    )
+                                    .toList(),
+                              ),
+                              Visibility(
+                                  visible: controller.loadingPosts.value,
+                                  child: Center(
+                                    child: CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                          GREEN_GRADIENT_DARK),
+                                    ),
+                                  )),
+                              Visibility(
+                                  visible: controller.postSuccess.response
+                                              .results.length >
+                                          30 &&
+                                      !controller.loadingPosts.value,
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 20),
+                                    child: GestureDetector(
+                                      child: FertilizerText(
+                                        text: 'تحميل المزيد؟',
+                                        fontSize: 12,
+                                        color: LINK_COLOR,
+                                      ),
+                                      onTap: () =>
+                                          controller.getAllPosts(false),
+                                    ),
+                                  ))
+                            ],
                           ),
               ),
             ),

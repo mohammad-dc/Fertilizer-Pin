@@ -12,26 +12,30 @@ class PostController extends GetxController with StateMixin<dynamic> {
   var postError = Error(success: false, message: '').obs();
 
   RxBool loading = false.obs;
+  RxBool loadingPosts = false.obs;
   var postsService = PostServeice();
 
   @override
   void onInit() {
     super.onInit();
-    getAllPosts(0);
+    getAllPosts(true);
   }
 
-  void getAllPosts(skip) async {
-    loading(true);
-    final response = await postsService.getPosts(skip);
+  void getAllPosts(load) async {
+    loading(load);
+    loadingPosts(!load);
+    final response = await postsService.getPosts(posts.length);
 
     if (response != null) {
       if (response is Error) {
         postError = response;
         loading(false);
+        loadingPosts(false);
       } else if (response is Posts) {
         postSuccess = response;
         posts.insertAll(posts.length, response.response.results);
         loading(false);
+        loadingPosts(false);
       }
     }
   }

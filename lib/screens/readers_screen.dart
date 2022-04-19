@@ -175,23 +175,32 @@ class ReadersScreen extends StatelessWidget {
                                               value: DateTime.now().month == 1
                                                   ? (1 * 0.7).toString() + ' ml'
                                                   : DateTime.now().month == 2
-                                                      ? (0.5 * 0.7).toString() +
+                                                      ? (0.5 * 0.7)
+                                                              .toStringAsFixed(
+                                                                  3)
+                                                              .toString() +
                                                           ' ml'
                                                       : DateTime.now().month ==
                                                               3
                                                           ? (0.5 * 0.7)
+                                                                  .toStringAsFixed(
+                                                                      3)
                                                                   .toString() +
                                                               ' ml'
                                                           : DateTime.now()
                                                                       .month ==
                                                                   4
                                                               ? (0.7 * 0.7)
+                                                                      .toStringAsFixed(
+                                                                          3)
                                                                       .toString() +
                                                                   ' ml'
                                                               : DateTime.now()
                                                                           .month ==
                                                                       5
                                                                   ? (0.3 * 0.7)
+                                                                          .toStringAsFixed(
+                                                                              3)
                                                                           .toString() +
                                                                       ' ml'
                                                                   : '0 ml',
@@ -200,7 +209,37 @@ class ReadersScreen extends StatelessWidget {
                                       ),
                                       SizedBox(
                                         height: 20,
-                                      )
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Reader(
+                                              text: 'WR',
+                                              value: double.parse(readerController
+                                                          .readers
+                                                          .sensors[0]
+                                                          .value
+                                                          .substring(
+                                                              0,
+                                                              readerController
+                                                                      .readers
+                                                                      .sensors[
+                                                                          0]
+                                                                      .value
+                                                                      .length -
+                                                                  1)) >
+                                                      45
+                                                  ? "لا يحتاج"
+                                                  : (((0.7 * 0.7) * 0.8) + 8)
+                                                          .toString() +
+                                                      'L',
+                                              color: K_COLOR),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
                                     ],
                                   ),
                       ),

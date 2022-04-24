@@ -49,6 +49,16 @@ class AccountController extends GetxController with StateMixin<dynamic> {
     }
   }
 
+  void refreshData() async {
+    var response = await authService.verifyAccount();
+    if (response != null) {
+      if (response is Verify) {
+        verifySuccess = response;
+        account = response.response.result;
+      }
+    }
+  }
+
   void logout() async {
     if (await SharedPreferencesHelper.checkIfExsist('token')) {
       await SharedPreferencesHelper.removeFromStorage('token');
@@ -72,7 +82,6 @@ class AccountController extends GetxController with StateMixin<dynamic> {
         } else if (response is UpdateImageResponse) {
           editSuccess = response;
           account.image = response.image;
-          update();
           updateImageLoading(false);
         }
       }

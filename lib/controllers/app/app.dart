@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:fertilizer_pin/config/config.dart';
@@ -12,37 +13,45 @@ class AppController extends GetxController with StateMixin<dynamic> {
 
   RxBool appInternetConnection = false.obs;
 
+  late StreamSubscription<InternetConnectionStatus> _listener;
+
   RxBool loading = false.obs;
 
   @override
   void onInit() {
     super.onInit();
-    checkAppInternetConnection(false, false);
+    checkAppInternetConnection();
     onPageTapped(currentPage.value);
+  }
+
+  @override
+  void onClose() {
+    _listener.cancel();
   }
 
   void onPageTapped(int page) {
     currentPage(page);
   }
 
-  void checkAppInternetConnection(bool click, bool load) async {
-    loading(load);
-    bool result = await InternetConnectionChecker().hasConnection;
-    if (result == true) {
-      loading(false);
-      var accountController = Get.put(AccountController());
-      var cityController = Get.put(CityController());
-      var weatherController = Get.put(WeatherController());
-      accountController.verify();
-      cityController.getAllCities();
-      weatherController.getWeather();
-    } else {
-      if (click) {
-        checkAppInternetConnection(click, load);
-      } else {
-        loading(false);
-        Get.offAllNamed("/noInternet");
+  void checkAppInternetConnection() {
+    _listener = InternetConnectionChecker()
+        .onStatusChange
+        .listen((InternetConnectionStatus status) {
+      switch (status) {
+        case InternetConnectionStatus.connected:
+          appInternetConnection.value = true;
+          var accountController = Get.put(AccountController());
+          var cityController = Get.put(CityController());
+          var weatherController = Get.put(WeatherController());
+          accountController.verify();
+          cityController.getAllCities();
+          weatherController.getWeather();
+          break;
+        case InternetConnectionStatus.disconnected:
+          appInternetConnection.value = false;
+          Get.offAllNamed("/noInternet");
+          break;
       }
-    }
+    });
   }
 }

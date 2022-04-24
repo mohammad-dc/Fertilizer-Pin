@@ -54,16 +54,26 @@ class ProfileScreen extends StatelessWidget {
                             height: 20,
                           ),
                           Container(
-                            child: Center(
-                              child: FertilizerImage(
-                                  image:
-                                      accountController.account.image.length !=
-                                          0,
-                                  width: 100,
-                                  height: 100,
-                                  networkImage: "$IMAGE_URL/" +
-                                      accountController.account.image),
-                            ),
+                            child: accountController.updateImageLoading.value
+                                ? Center(
+                                    child: SizedBox(
+                                    height: 25,
+                                    width: 25,
+                                    child: CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                          BLACK_COLOR),
+                                    ),
+                                  ))
+                                : Center(
+                                    child: FertilizerImage(
+                                        image: accountController
+                                                .account.image.length !=
+                                            0,
+                                        width: 100,
+                                        height: 100,
+                                        networkImage: "$IMAGE_URL/" +
+                                            accountController.account.image),
+                                  ),
                           ),
                           SizedBox(height: 30),
                           GestureDetector(

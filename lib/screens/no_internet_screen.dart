@@ -3,6 +3,7 @@ import 'package:fertilizer_pin/controllers/app/app.dart';
 import 'package:fertilizer_pin/widgets/button.dart';
 import 'package:fertilizer_pin/widgets/fertilizer_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 
 class NoInternetConnectionScreen extends StatelessWidget {
@@ -32,15 +33,9 @@ class NoInternetConnectionScreen extends StatelessWidget {
             SizedBox(
               height: 30,
             ),
-            GetBuilder<AppController>(
-              builder: (controller) => Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40),
-                child: FertilizerButton(
-                    text: 'اعادة الاتصال',
-                    onPressed: () =>
-                        controller.checkAppInternetConnection(true, true),
-                    loading: controller.loading.value),
-              ),
+            SpinKitFadingCircle(
+              color: GREEN_GRADIENT_DARK,
+              size: 50,
             )
           ],
         ),
